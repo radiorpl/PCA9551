@@ -197,8 +197,8 @@ void digitOn(int digit, int character, int character2){
 
 
 void loop(){
-    digitOn(0, 15, 14);
-    digitOn(1, 4, 10);
-    digitOn(2, 7, 10);
-    digitOn(3, 15, 15);
+    digitOn(0, 0, );
+    digitOn(1, 0, 0);
+    digitOn(2, 0, 0);
+    digitOn(3, 0, 0);
 }
