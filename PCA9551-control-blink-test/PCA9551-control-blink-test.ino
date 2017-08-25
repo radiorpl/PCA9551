@@ -118,12 +118,12 @@ byte seg1[] = {
 */
 
 //             0    1   2  3   4   5   6    7   8   9   A  b    c   d  E    F   g  h   i   j   L   m    n  o   p   q   r   s   t   u   y   Z   -    _   ^   .  " "
-byte seg0 [] { 0,  65, 16, 0,  65, 4,  4,  64, 0,  64, 64, 5,  21, 1,  20, 84, 0,  69, 85, 1,  21, 68, 69, 5,  80, 64, 85, 4,  21, 5,  65, 16, 85, 21, 84, 85, 85 };
-byte seg1 [] { 80, 85, 68, 69, 65, 65, 64, 85, 64, 65, 64, 64, 68, 68, 64, 64, 65, 64, 84, 84, 80, 84, 68, 68, 64, 65, 68, 65, 64, 84, 65, 68, 69, 85, 85, 21, 85};
+byte seg0 [37] { 0,  65, 16, 0,  65, 4,  4,  64, 0,  64, 64, 5,  21, 1,  20, 84, 0,  69, 85, 1,  21, 68, 69, 5,  80, 64, 85, 4,  21, 5,  65, 16, 85, 21, 84, 85, 85 };
+byte seg1 [37] { 80, 85, 68, 69, 65, 65, 64, 85, 64, 65, 64, 64, 68, 68, 64, 64, 65, 64, 84, 84, 80, 84, 68, 68, 64, 65, 68, 65, 64, 84, 65, 68, 69, 85, 85, 21, 85};
 //blink
 //                  0    1    2    3    4    5    6    7    8    9    A    b    c    d    E    F    g    h    i   j    L    m    n    o    p    q   r     s   t     u    y    Z    																																											 -   _  ^  . " "
-byte segBlink0 [] {255, 125, 223, 255, 125, 247, 247, 127, 255, 127, 127, 245, 213, 253, 215, 87,  255, 117, 85, 253, 213, 119, 117, 245, 95,  127, 85,  247, 213, 245, 125, 223, 85,  213, 87, 85,  85 };
-byte segBlink1 [] {95,  85,  119, 117, 125, 125, 127, 85,  127, 125, 127, 127, 119, 119, 127, 127, 125, 127, 87, 87,  95,  87,  119, 119, 127, 125, 119, 125, 127, 87,  125, 119, 117, 85,  85, 213, 85 };
+byte segBlink0 [37] {255, 125, 223, 255, 125, 247, 247, 127, 255, 127, 127, 245, 213, 253, 215, 87,  255, 117, 85, 253, 213, 119, 117, 245, 95,  127, 85,  247, 213, 245, 125, 223, 85,  213, 87, 85,  85 };
+byte segBlink1 [37] {95,  85,  119, 117, 125, 125, 127, 85,  127, 125, 127, 127, 119, 119, 127, 127, 125, 127, 87, 87,  95,  87,  119, 119, 127, 125, 119, 125, 127, 87,  125, 119, 117, 85,  85, 213, 85 };
 
 elapsedMillis digWait; 
 
@@ -142,7 +142,7 @@ void setup() {
 }
 
 //write digits
-void digitOn(int digit, int character, int character2){
+void digitOn(int digit, int character ){
   if (digit == 0){
 
 	digitalWriteFast(digPins[0],HIGH); //first digit on
@@ -153,7 +153,7 @@ void digitOn(int digit, int character, int character2){
   	Wire.beginTransmission(96);
   	Wire.write(seg[0]);
 	Wire.write(segBlink0[character]);
-	Wire.write(segBlink1[character2]);
+	Wire.write(segBlink1[character]);
   	Wire.endTransmission();
     delay(2);
   	Wire.beginTransmission(96);
@@ -170,7 +170,7 @@ void digitOn(int digit, int character, int character2){
   	Wire.beginTransmission(96);
   	Wire.write(seg[0]);
 	Wire.write(segBlink0[character]);
-	Wire.write(segBlink1[character2]);
+	Wire.write(segBlink1[character]);
   	Wire.endTransmission();
     //Serial.println(digit);
     delay(2);
@@ -188,7 +188,7 @@ void digitOn(int digit, int character, int character2){
   	Wire.beginTransmission(96);
   	Wire.write(seg[0]);
 	Wire.write(segBlink0[character]);
-	Wire.write(segBlink1[character2]);
+	Wire.write(segBlink1[character]);
   	Wire.endTransmission();
     delay(2);
   	Wire.beginTransmission(96);
@@ -205,7 +205,7 @@ void digitOn(int digit, int character, int character2){
   	Wire.beginTransmission(96);
   	Wire.write(seg[0]);
 	Wire.write(segBlink0[character]);
-	Wire.write(segBlink1[character2]);
+	Wire.write(segBlink1[character]);
   	Wire.endTransmission();
     delay(2);
   	Wire.beginTransmission(96);
@@ -225,10 +225,10 @@ void loop(){
 		}
 		digWait = 0;
 		while( digWait < 1000 ){
-		  digitOn(0, i, i);
-	      digitOn(1, i, i);
-	      digitOn(2, i, i);
-	      digitOn(3, i, i);
+		  digitOn(0, i);
+	      digitOn(1, i);
+	      digitOn(2, i);
+	      digitOn(3, i);
 		}
 	}
 }
